@@ -2,4 +2,4 @@
 
 WIP
 
-*Part of the __Full Stack Open__ Curriculum.*
+*Part of the __[Full Stack Open](https://fullstackopen.com)__ Curriculum.*
