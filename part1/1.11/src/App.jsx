@@ -9,14 +9,12 @@ const Statistics = ({stats}) => {
   if(total > 0) {
     return (
       <table>
-        <tbody>
-          <StatisticLine text='good' value={stats.good} />
-          <StatisticLine text='neutral' value={stats.neutral} />
-          <StatisticLine text='bad' value={stats.bad}/>
-          <StatisticLine text='total' value={total}/>
-          <StatisticLine text='average' value={average}/>
-          <StatisticLine text='positive' value={positive}/>
-        </tbody>
+        <StatisticLine text='good' value={stats.good} />
+        <StatisticLine text='neutral' value={stats.neutral} />
+        <StatisticLine text='bad' value={stats.bad}/>
+        <StatisticLine text='total' value={total}/>
+        <StatisticLine text='average' value={average}/>
+        <StatisticLine text='positive' value={positive}/>
       </table>
     )
   }
