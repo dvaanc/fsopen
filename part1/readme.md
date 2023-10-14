@@ -6,4 +6,4 @@ Parts 1.1 - 1.5 focuses on the Course Info project <br />
 Parts 1.6 - 1.11 are focused on the Unicafe project. <br />
 Parts 1.12 - 1.14 are focused on the Anecdotes project. <br />
 
-*Part of the __[Full Stack Open](https://fullstackopen.com)__ Curriculum.*
+*Part of the __[Full Stack Open](https://fullstackopen.com)__ Curriculum held at the Department of Computer Science of __[University of Helsinki](https://www.helsinki.fi/en)__.*
