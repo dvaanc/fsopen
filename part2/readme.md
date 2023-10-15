@@ -18,9 +18,9 @@ Parts 2.11 - 2.15 focuses building on the Phonebook project. <br />
 - Seperating components into their own modules.
 - Extracting backend functionality into a seperate module.
 - Cleaner syntax for defining object literals
-- Learn how the fullstack applicaton works:
+- Learn how the fullstack applicaton works: <br />
 ![Runtime Environment](https://fullstackopen.com/static/0e3766361ce9d08f0c4fdd39152cf493/5a190/18e.png)
 <br />
 
 
-*Part of the __[Full Stack Open](https://fullstackopen.com)__ Curriculum held at the Department of Computer Science of __[University of Helsinki](https://www.helsinki.fi/en)__.*
+*Part of the __[Full Stack Open](https://fullstackopen.com)__ Curriculum held at __[University of Helsinki](https://www.helsinki.fi/en)__.*
