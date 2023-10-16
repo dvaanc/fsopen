@@ -1,70 +1,81 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-
+import CountriesList from './components/CountriesList'
+import CountryInfo from './components/CountryInfo'
+import CountryService from './services/CountryService'
 
 const App = () => {
 const [country, setCountry] = useState('')
 const [allCountries, setAllCountries] = useState([])
 const [filteredCountries, setFilteredCountries] = useState([])
+const [selectedCountry, setSelectedCountry] = useState(null)
 const [status, setStatus] = useState('')
 
-// useEffect(() => {
-//   console.log('effect run, country is now', country)
-https://studies.cs.helsinki.fi/restcountries/api/all
-//   // skip if currency is not defined
-//   if (country) {
-//     console.log('fetching countries...')
-//     axios
-//       .get(`https://studies.cs.helsinki.fi/restcountries/api/name/${country}`)
-//       .then(response => {
-//         console.log(response.data)
-//         setCountryData(...response.data)
-//       })
-//   }
-// }, [country])
 
 useEffect(() => {
-  console.log('effect run, fetching all countries')
-  axios
-  .get(`https://studies.cs.helsinki.fi/restcountries/api/all`)
-  .then(response => {
-    setAllCountries(response.data)
-  })
+  CountryService.fetchAllCountries()
+  .then(data => setAllCountries(data))
+  .catch(err => console.log(err))
 }, [])
-
-// useEffect(() => {
-//   console.log(allCountries)
-// }, [allCountries])
 
 const handleCountryInput = e => {
   const countryInput = e.target.value
   setCountry(countryInput)
   handleFilterCountries(countryInput)
+}
 
+const handleShowCountry = (country) => {
+  CountryService.fetchWeatherdata(country)
+    .then(res => setSelectedCountry({...country, weather: res}))
+    .catch(err => {
+      console.log(err)
+      setSelectedCountry({...country, weather: null})
+    })
 }
 
 const handleFilterCountries = (countryInput) => {
   const filterArr = allCountries.filter(country => country.name.common.toLowerCase().includes(countryInput))
-  setFilteredCountries(filterArr)
-  if(filterArr.length > 10) setStatus('Too many matches, specify another filter')
+  if(countryInput === '') {
+    setStatus('')
+    setFilteredCountries([])
+    return
+  }
+  if(filterArr.length > 10) {
+    setStatus('Too many matches, specify another filter')
+    setFilteredCountries([])
+    return
+  }
+  if(filterArr.length === 0) {
+    setStatus('No matches found')
+    setFilteredCountries([])
+    return
+  }
+  if(filterArr.length > 1) {
+    setStatus('')
+    setFilteredCountries(filterArr)
+    return
+  }
+  if(filterArr.length === 1) {
+    setFilteredCountries([filterArr[0]])
+  }
 }
-
 
   return (
     <div>
       <div>
-        find countries <input onChange={handleCountryInput} value={country}/>
+        {allCountries.length === 0
+          ? <p>fetching countries....</p>
+          : <>find countries <input onChange={handleCountryInput} value={country}/></>
+        }
       </div>
       <p>{status}</p>
-      <ul>
-        {filteredCountries.map(country => <li key={filteredCountries.indexOf(country)}>{country.name.common}</li>)}
-      </ul>
-      
-      <div>
-        debug: {country}
-      </div>
+      {filteredCountries.length !== 1 
+        && <CountriesList filteredCountries={filteredCountries} handleShowCountry={handleShowCountry} />
+      }
+      {selectedCountry && <CountryInfo country={selectedCountry} />}
     </div>
   )
 }
 
 export default App
+
+// ? <CountryInfo country={filteredCountries[0]} /> 
