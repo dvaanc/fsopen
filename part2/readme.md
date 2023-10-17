@@ -1,7 +1,5 @@
 # Part 2
 
-Work in progres... come back later
-
 Parts 2.1 - 2.5 focuses building on the Course Info project from part 1 <br />
 Parts 2.6 - 2.10 focuses on the Phonebook project <br />
 Parts 2.11 - 2.15 focuses building on the Phonebook project. <br />
